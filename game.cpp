@@ -3,6 +3,7 @@
 #include "gameObject.hpp"
 #include "textureManager.h"
 #include "assetsMap.hpp"
+#include "board.hpp"
 
 constexpr char 
 SEPERATOR_STR [] = "-------------------------------------\n";
@@ -14,6 +15,7 @@ constexpr bool IS_OFF = false;
 sdl::shared_ptr <SDL_Window> game::window = nullptr;
 sdl::shared_ptr <SDL_Renderer> game::renderer = nullptr;
 
+extern enum TEXTURE_NAMES textureNames;
 auto thisAssetsMap = assetsMap ();
 
 game::game (
@@ -144,16 +146,17 @@ void game::update ( ) {
     
 }
 
-void game::render() {  
+void game::render ( ) {  
     static const auto& background = thisAssetsMap.background;
     SDL_RenderClear( game::renderer.get ( ) );
-    // render
-    for (const auto& row : background) {
-        for (const auto& obj : row) {
-            textureManager(game::renderer).draw(*obj);
-        }
-    }
+    
+    SDL_RenderCopy(renderer.get ( ),
+        thisAssetsMap.textures.map[sq_light_gray].get( ),
+        NULL, NULL);
+    board::renderBackgound( );
+    board::renderPeices( );
+    
     SDL_RenderPresent( game::renderer.get ( ) );
 }
 
-void game::clean() {  }
+void game::clean ( ) {  }

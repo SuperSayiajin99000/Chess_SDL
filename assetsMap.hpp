@@ -6,9 +6,8 @@
 #include <unordered_map>
 #include <vector>
 
-using sound = int; // ! CHANGE WHEN ADDING SOUNDS
 
-enum textureNames {
+enum TEXTURE_NAMES {
 	sq_dark_brown,
 	sq_light_brown,
 	sq_dark_gray,
@@ -30,22 +29,28 @@ enum textureNames {
 };
 
 
+using sound = int; // ! CHANGE WHEN ADDING SOUNDS
+
 class assetsMap {
 public:
-	struct textures {
+	typedef struct texturesMap {
 		std::unordered_map < int, sdl::shared_ptr <SDL_Texture> > map;
-	} textures;
-	struct sounds {
+	} texturesMap;
+	typedef struct soundsMap {
 		std::unordered_map < int, sdl::shared_ptr <sound> > map;
-	} sounds;
+	} soundsMap;
+	static texturesMap textures;
+	static soundsMap sounds;
 public:
 	static constexpr int ROWS = 8;
 	static constexpr int COLS = 8;
 	static std::vector < std::vector < std::shared_ptr <gameObject> > > background;
+	static std::vector < std::shared_ptr <gameObject> > peices;
 public:
 	assetsMap ( );
 	void loadAssets ( );
 	void makeBackground ( );
-	void generateAssetsMap();
+	void makePeices( );
+	void generateAssetsMap ( );
 	~assetsMap ( );
 };
