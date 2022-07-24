@@ -1,7 +1,7 @@
 # sdl_start
 
 includes {
-  sdl.h
+  sdl.h,
   sdl_image
 }
 
