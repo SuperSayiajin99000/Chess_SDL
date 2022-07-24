@@ -1,108 +1,88 @@
 #include <iostream>
+#include "game.hpp"
+#include "gameObject.hpp"
+#include "textureManager.h"
+#include "assetsMap.hpp"
+
+constexpr char 
+SEPERATOR_STR [] = "-------------------------------------\n";
+
 constexpr bool IS_ON = true;
 constexpr bool IS_OFF = false;
-constexpr char SEPERATOR_STR[] = "-------------------------------------\n";
 #define DEBUG_MODE IS_ON
-#include "game.hpp"
-#include "textureManager.h"
 
-game thisGame = game ( "CHESS" );
-constexpr int ROWS = 8;
-constexpr int COLS = 8;
+sdl::shared_ptr <SDL_Window> game::window = nullptr;
+sdl::shared_ptr <SDL_Renderer> game::renderer = nullptr;
 
-std::vector < std::vector < std::shared_ptr <gameObject> > >
-background (
-    ROWS, std::vector <std::shared_ptr<gameObject>> (COLS)
-);
-
-void make_background () {
-    bool isOdd = true;
-    std::unordered_map <std::string, sdl::shared_ptr<SDL_Texture>>& gameTextures
-        = thisGame.assets.gameTextures;
-
-    for (auto& row: background) {
-        for (auto& obj: row) {
-            std::shared_ptr <gameObject> temp;
-            if (isOdd) {
-                temp->texture = gameTextures["square dark brown"];
-            } else {
-                temp->texture = gameTextures["square light brown"];
-            }
-            obj = std::move (temp);
-            isOdd = !isOdd;
-        }
-    }
-}
-
+auto thisAssetsMap = assetsMap ();
 
 game::game (
-        const std::string& windowName,
-        const std::pair <int, int>& windowPos,
-        const std::pair <int, int>& windowSize,
-        bool fullscreen
-    ) :
+    const std::string& windowName,
+    const std::pair <int, int>& windowPos,
+    const std::pair <int, int>& windowSize,
+    bool fullscreen
+) :
 
-        isPlaying (true),
-        xPos(windowPos.first),
-        yPos(windowPos.second),
-        WIDTH (windowSize.first),
-        HEIGHT(windowSize.second)
+isPlaying (true),
+xPos(windowPos.first),
+yPos(windowPos.second),
+WIDTH (windowSize.first),
+HEIGHT(windowSize.second) {
+    
+    using namespace std;
+
+    if ( init () == false )
     {
 
-        using namespace std;
+        cout << "INITILIZATIONS FAILED!" << endl;
 
-        if ( init () == false )
-        {
+        isPlaying = false;
 
-            cout << "INITILIZATIONS FAILED!" << endl;
+        return;
+    }
 
-            isPlaying = false;
+    auto flags = ((fullscreen) ? SDL_WINDOW_FULLSCREEN : 0);
 
-            return;
-        }
+    // ---------- create window -------------
+    this->window =
+        sdl::make_shared (SDL_CreateWindow (
+            windowName.c_str( ),         // name of the application window
+            xPos, yPos,                  // x, y COORDs of the window on screen
+            WIDTH, HEIGHT,               // size of the window
+            flags
+        ));
 
-        auto flags = ((fullscreen) ? SDL_WINDOW_FULLSCREEN : 0);
+    if ( this->window == nullptr )
+    {
 
-        // ---------- create window -------------
-        this->window =
-            sdl::make_shared (SDL_CreateWindow (
-                windowName.c_str( ),         // name of the application window
-                xPos, yPos,                  // x, y COORDs of the window on screen
-                WIDTH, HEIGHT,               // size of the window
-                flags
-            ));
+        std::cout << "SDL could not create window, ERROR :: " << SDL_GetError ( ) << std::endl;
 
-        if ( this->window == nullptr )
-        {
+        isPlaying = false;
 
-            std::cout << "SDL could not create window, ERROR :: " << SDL_GetError ( ) << std::endl;
+        return;
+    }
 
-            isPlaying = false;
+    this->renderer = sdl::make_shared (SDL_CreateRenderer ( this->window.get (), -1, 0 ));
 
-            return;
-        }
+    if ( renderer == nullptr )
+    {
 
-        this->renderer = sdl::make_shared (SDL_CreateRenderer ( this->window.get (), -1, 0 ));
+        std::cout << "SDL could not create renderer, ERROR :: " << SDL_GetError ( ) << std::endl;
 
-        if ( renderer == nullptr )
-        {
+        isPlaying = false;
 
-            std::cout << "SDL could not create renderer, ERROR :: " << SDL_GetError ( ) << std::endl;
+        return;
+    }
 
-            isPlaying = false;
+    SDL_SetRenderDrawColor(renderer.get ( ), 255, 255, 255, 255);
 
-            return;
-        }
-
-        loadAssets ( );
-    };
+};
 
 
 game::~game () {
     #if DEBUG_MODE == IS_ON
     std::cout << "Destroying the game. Please wait while we free your memory." << std::endl;
     #endif // DEBUG_MODE
-    assets.gameTextures.clear ();
     SDL_Quit ();
     return;
 }
@@ -122,9 +102,11 @@ const bool game::init ( ) {
         #endif // DEBUG_MODE
         return false;
     }
-    #if DEBUG_MODE == IS_ON
+ #if DEBUG_MODE == IS_ON
+
     else cout << "SDL initialized successfully" << endl;
-    #endif // DEBUG_MODE
+    
+#endif // DEBUG_MODE
 
     // SDL_image
     if ( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) ) {
@@ -146,37 +128,7 @@ const bool game::init ( ) {
     return true;
 }
 
-void game::loadAssets ( ) {
-    using namespace std;
-    cout << "Loading Assets... " << endl;
-
-    textureManager txmgr (renderer);
-
-    assets.gameTextures ["square dark brown"] =
-            txmgr.loadTexture
-            ("./assets/PNGs/No shadow/128h/square brown dark_png_128px.png");
-
-    assets.gameTextures ["square light brown"] =
-            txmgr.loadTexture
-            ("./assets/PNGs/No shadow/128h/square brown light_png_128px.png");
-
-    assets.gameTextures ["square dark gray"] =
-            txmgr.loadTexture
-            ("./assets/PNGs/No shadow/128h/square gray dark_png_128px.png");
-
-    assets.gameTextures ["square light gray"] =
-            txmgr.loadTexture
-            ("./assets/PNGs/No shadow/128h/square gray light_png_128px.png");
-
-    make_background ();
-
-    cout <<  assets.gameTextures.size() << " assets loaded." << endl;
-//    assets.gameTextures.erase (assets.gameTextures.find ("square dark brown"));
-    cout << "Assets successfully loaded " << endl;
-    cout << SEPERATOR_STR;
-}
-
-void game::handleEvents () {
+void game::handleEvents ( ) {
     if ( SDL_PollEvent ( &windowEvent ) ) {
         switch (windowEvent.type) {
         case SDL_QUIT:
@@ -189,14 +141,19 @@ void game::handleEvents () {
 }
 
 void game::update ( ) {
-    for (const auto& row: background) {
-        for (const auto& obj: row) {
-            textureManager(renderer).draw (*obj);
-        }
-    }
+    
 }
 
-void game::render ( ) { }
+void game::render() {  
+    static const auto& background = thisAssetsMap.background;
+    SDL_RenderClear( game::renderer.get ( ) );
+    // render
+    for (const auto& row : background) {
+        for (const auto& obj : row) {
+            textureManager(game::renderer).draw(*obj);
+        }
+    }
+    SDL_RenderPresent( game::renderer.get ( ) );
+}
 
-void game::clean ( ) { }
-
+void game::clean() {  }

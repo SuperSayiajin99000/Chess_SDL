@@ -13,39 +13,17 @@
 #include <SDL_image.h>
 #include "SDL_memory.h"
 
-struct point {
-    int x;
-    int y;
-};
-
-struct gameObject {
-    sdl::shared_ptr <SDL_Texture> texture;
-    point pos;
-    SDL_Rect srcRect;
-    SDL_Rect destRect;
-
-    gameObject () {
-        srcRect.x = srcRect.y = 0;
-        srcRect.w = srcRect.h = 32;
-        destRect.x = destRect.y = 0;
-        destRect.w = destRect.h = 32;
-    }
-};
-
 class game {
 private: // all the stuff in the initializer list
     bool isPlaying;
     const int xPos, yPos;
     const int WIDTH, HEIGHT;
 private:  // basic UI stuff
-    sdl::shared_ptr <SDL_Window> window;
-    sdl::shared_ptr <SDL_Renderer> renderer;
     SDL_Event windowEvent;
     bool m_isFullScreen = false;
-public: // game assets
-    struct assets {
-        std::unordered_map < std::string, sdl::shared_ptr <SDL_Texture> > gameTextures; // should be enums ideally
-    } assets;
+public:
+    static sdl::shared_ptr <SDL_Window> window;
+    static sdl::shared_ptr <SDL_Renderer> renderer;
 public:
     game (
         const std::string& windowName,
@@ -56,7 +34,6 @@ public:
     ~game ( );
 
     const bool init ( );
-    void loadAssets ( );
     void update ( );
     void handleEvents( );
     void render ( );
@@ -70,8 +47,7 @@ public:
         return m_isFullScreen;
     }
 
-    const inline bool isRunning ( ) const
-    {
+    const inline bool isRunning ( ) const {
         return isPlaying;
     };
 };
