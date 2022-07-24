@@ -134,8 +134,8 @@ void assetsMap::makeBackground ( ) {
 			else
 				obj->texture = textures.map[sq_light_brown];
 
-			obj->srcRect = { 0, 0, sqLen, sqLen };
-			obj->destRect = { xpos, ypos, sqLen, sqLen }; // [X, Y, W, H]
+			obj->srcRect = { 0, 0, sqLen*2, sqLen*2 };
+			obj->destRect = { xpos, ypos, sqLen, sqLen}; // [X, Y, W, H]
 			isBlack = !isBlack;
 			xpos += sqLen;
 		}
@@ -150,12 +150,12 @@ inline void addPeice (enum TEXTURE_NAMES textureName, int xPos, int yPos) {
 		std::make_shared <gameObject>(
 			gameObject(
 				assetsMap::textures.map[textureName],
-				{ 0, 0, board::sqLen, board::sqLen },
+				{ 0, 0, board::sqLen*3, board::sqLen*3 },
 				{   
-					board::start.x + xPos,
-					board::start.y + yPos,
-					board::sqLen,
-					board::sqLen 
+					board::start.x + xPos + board::sqLen/8,
+					board::start.y + yPos + board::sqLen/8,
+					3*board::sqLen/4,
+					3*board::sqLen/4
 				}
 			)
 		)
