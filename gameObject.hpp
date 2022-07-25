@@ -26,7 +26,7 @@ public:
     };
     */
 
-    std::shared_ptr < std::function < void (void)> > update;
+    std::shared_ptr < std::function < void (gameObject&)> > update;
     std::shared_ptr < std::function < void (const gameObject&)> > render;
 };
 

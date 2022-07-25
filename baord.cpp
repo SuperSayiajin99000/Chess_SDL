@@ -1,22 +1,6 @@
 #include "board.hpp"
 #include "assetsMap.hpp"
 #include "textureManager.h"
-//
-//void board::renderBackgound ( ) {
-//    const auto& background = assetsMap::background;
-//    for (const auto& row : background) {
-//        for (const auto& obj : row) {
-//            textureManager(game::renderer).draw(*obj);
-//        }
-//    }
-//}
-//
-//void board::renderPieces() {
-//    const auto& pieces = assetsMap::pieces;
-//    for (const auto& piece : pieces) {
-//        textureManager(game::renderer).draw(*piece);
-//    }
-//}
 
 const auto& pieces = assetsMap::pieces;
 
@@ -29,7 +13,7 @@ void board::makeBoardRenderMatrix() {
 	piecesMap = std::unordered_map <int, std::shared_ptr <gameObject> >({
 		{ b_rook1, pieces[0] },
 
-		{ b_knight1, pieces[1]},
+		{ b_knight1, pieces[1] },
 
 		{ b_bishop1, pieces[2] },
 
