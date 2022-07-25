@@ -1,8 +1,9 @@
 #include "board.hpp"
 #include "assetsMap.hpp"
 #include "textureManager.h"
+#include "gameObjectsMap.hpp"
 
-const auto& pieces = assetsMap::pieces;
+const auto& pieces = gameObjectsMap::pieces;
 
 std::unordered_map <int, std::shared_ptr <gameObject> > board::piecesMap;
 
@@ -63,7 +64,7 @@ void board::makeBoardRenderMatrix() {
 
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			boardRenderMatrix[i][j].push_back(assetsMap::background[i][j]);
+			boardRenderMatrix[i][j].push_back(gameObjectsMap::background[i][j]);
 		}
 	}
 	for (int i = 0; i < ROWS; ++i) {
@@ -81,7 +82,7 @@ void board::makeBoardRenderMatrix() {
 	
 }
 
-void board::renderTheMatrix() {
+void board::renderMatrix() {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
 			for (auto& thisObj : boardRenderMatrix[i][j]) {
@@ -91,4 +92,8 @@ void board::renderTheMatrix() {
 			}
 		}
 	}
+}
+
+void board::updateMatrix() {
+
 }

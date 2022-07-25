@@ -23,32 +23,19 @@
 //	w_queen,
 //	w_rook,
 //};
-
-std::vector <std::vector < std::shared_ptr <gameObject> > > assetsMap::background;
-std::vector <std::shared_ptr <gameObject>> assetsMap::pieces;
 assetsMap::texturesMap assetsMap::textures;
 assetsMap::soundsMap assetsMap::sounds;
 
 assetsMap::assetsMap () {
-
-	background.reserve(board::ROWS);
-	for (int i = 0; i < board::ROWS; ++i) {
-
-		background.push_back( std::vector < std::shared_ptr < gameObject> > () );
-		background.back().reserve(board::COLS);
-		for (int j = 0; j < board::COLS; ++j) {
-
-			background.back().push_back ( std::make_shared < gameObject >() );
-		
-		}
-	}
+	textures.map.reserve(16);
 }
 
-void assetsMap::loadAssets ( ) {
+void assetsMap::generate ( ) {
 	using namespace std;
 	cout << "Loading Assets... " << endl;
 
 	textureManager txmgr;
+
 
 	textures.map [sq_dark_brown] =
 		txmgr.loadTexture
@@ -128,137 +115,7 @@ void assetsMap::loadAssets ( ) {
 	}
 }
 
-extern std::shared_ptr <std::function <void (const gameObject&)>> ptr_to_basicObjRender;
-
-extern std::shared_ptr <std::function <void (const gameObject&)>> ptr_to_pieceRender;
-
-void assetsMap::makeBackground ( ) {
-	bool isBlack = false; // index start form 0
-
-	const auto& tileSize = board::tileSize;
-	int xpos = board::start.x, ypos = board::start.y;
-
-	for (auto& row : background) {
-		for (auto& obj : row) {
-
-			if (isBlack)
-				obj->texture = textures.map[sq_dark_brown];
-
-			else
-				obj->texture = textures.map[sq_light_brown];
-
-			obj->srcRect = { 0, 0, tileSize*2, tileSize*2 };
-			obj->destRect = { xpos, ypos, tileSize, tileSize}; // [X, Y, W, H]
-			obj->render = ptr_to_basicObjRender;
-
-			isBlack = !isBlack;
-			xpos += tileSize;
-		}
-		isBlack = !isBlack;
-		xpos = board::start.x;
-		ypos += tileSize;
-	}
-}
-
-inline void addPiece (enum TEXTURE_NAMES textureName, int xPos, int yPos) {
-	assetsMap::pieces.push_back(
-		std::make_shared <gameObject>(
-			gameObject(
-				assetsMap::textures.map[textureName],
-				{ 0, 0, board::tileSize*3, board::tileSize*3 },
-				{   
-					board::start.x + xPos + board::piece_shift_origin,
-					board::start.y + yPos + board::piece_shift_origin,
-					board::piece_size,
-					board::piece_size
-				}
-			)
-		)
-	);
-	assetsMap::pieces.back()->render = ptr_to_pieceRender;
-}
-
-void assetsMap::makePieces() {
-	int xPos = 0, yPos = 0;
-	
-
-	addPiece(b_rook, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(b_knight, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(b_bishop, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(TEXTURE_NAMES::b_queen, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(TEXTURE_NAMES::b_king, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(b_bishop, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(b_knight, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(b_rook, xPos, yPos);
-	xPos += board::tileSize;
-
-	xPos = 0;
-	yPos += board::tileSize;
-	
-	for (int i = 0; i < 8; ++i) {
-		addPiece(b_pawn, xPos, yPos);
-		xPos += board::tileSize;
-	}
-
-	xPos = 0;
-	yPos = board::tileSize * 6;
-
-	for (int i = 0; i < 8; ++i) {
-		addPiece(w_pawn, xPos, yPos);
-		xPos += board::tileSize;
-	}
-	
-	xPos = 0;
-	yPos += board::tileSize;
-
-	addPiece(w_rook, xPos, yPos);
-	xPos += board::tileSize;
-
-	addPiece(w_knight, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(w_bishop, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(TEXTURE_NAMES::w_queen, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(TEXTURE_NAMES::w_king, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(w_bishop, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(w_knight, xPos, yPos);
-	xPos += board::tileSize;
-	
-	addPiece(w_rook, xPos, yPos);
-	xPos += board::tileSize;
-}
-
-void assetsMap::generateAssetsMap ( ) {
-	loadAssets ( );
-	makeBackground ( );
-	makePieces ( );
-	board::makeBoardRenderMatrix();
-}
-
 assetsMap::~assetsMap ( ) {
 	textures.map.clear ( );
 	sounds.map.clear ( );
-	background.clear ( );
 }

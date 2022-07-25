@@ -1,7 +1,14 @@
 
 #include "game.hpp"
+#include "assetsMap.hpp"
+#include "gameObjectsMap.hpp"
+#include "board.hpp"
 
 constexpr int WIN_W = 704, WIN_H = 640;
+
+assetsMap       thisAssetsMap     ;
+gameObjectsMap  thisGameObjectsMap;
+board           thisBoard         ;
 
 int main ( int argc, char* argv[] ) {
 
@@ -13,6 +20,15 @@ int main ( int argc, char* argv[] ) {
         {WIN_W, WIN_H},
         false
     );
+    
+    thisAssetsMap = assetsMap();
+    thisAssetsMap.generate();
+
+    thisGameObjectsMap = gameObjectsMap();
+    thisGameObjectsMap.generate();
+
+    thisBoard = board();
+    thisBoard.makeBoardRenderMatrix();
 
     constexpr int FPS = 10;
     constexpr int frameDelay = 1000 / FPS;

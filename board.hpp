@@ -45,5 +45,6 @@ public:
 	static std::array < std::array <std::vector < std::shared_ptr <gameObject> >, 8 >, 8 > boardRenderMatrix;
 public:
 	static void makeBoardRenderMatrix ( );
-	static void renderTheMatrix ( );
+	static void updateMatrix ( );
+	static void renderMatrix ( );
 };

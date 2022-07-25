@@ -116,6 +116,7 @@
     <ClCompile Include="baord.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="gameObjectsMap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderFunctions.cpp" />
   </ItemGroup>
@@ -124,6 +125,7 @@
     <ClInclude Include="board.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="gameObject.hpp" />
+    <ClInclude Include="gameObjectsMap.hpp" />
     <ClInclude Include="SDL_memory.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>
