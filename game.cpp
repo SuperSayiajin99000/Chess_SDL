@@ -150,12 +150,18 @@ void game::render ( ) {
     static const auto& background = thisAssetsMap.background;
     SDL_RenderClear( game::renderer.get ( ) );
     
+    // empty space
     SDL_RenderCopy(renderer.get ( ),
         thisAssetsMap.textures.map[sq_light_gray].get( ),
         NULL, NULL);
-    board::renderBackgound( );
-    board::renderPeices( );
-    
+
+    //// chess board
+    //board::renderBackgound( );
+    //// pieces
+    //board::renderPieces( );
+    //
+    board::renderTheMatrix();
+
     SDL_RenderPresent( game::renderer.get ( ) );
 }
 

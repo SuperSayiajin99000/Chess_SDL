@@ -28,7 +28,6 @@ enum TEXTURE_NAMES {
 	w_rook,
 };
 
-
 using sound = int; // ! CHANGE WHEN ADDING SOUNDS
 
 class assetsMap {
@@ -42,15 +41,14 @@ public:
 	static texturesMap textures;
 	static soundsMap sounds;
 public:
-	static constexpr int ROWS = 8;
-	static constexpr int COLS = 8;
 	static std::vector < std::vector < std::shared_ptr <gameObject> > > background;
-	static std::vector < std::shared_ptr <gameObject> > peices;
-public:
-	assetsMap ( );
+	static std::vector < std::shared_ptr <gameObject> > pieces;
+private:
 	void loadAssets ( );
 	void makeBackground ( );
-	void makePeices( );
+	inline void makePieces( );
+public:
+	assetsMap ( );
 	void generateAssetsMap ( );
 	~assetsMap ( );
 };

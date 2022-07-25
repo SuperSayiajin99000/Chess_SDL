@@ -3,7 +3,7 @@
 #include "game.hpp"
 #include <functional>
 
-struct gameObject {
+class gameObject {
 public:
     sdl::shared_ptr <SDL_Texture> texture;
     SDL_Rect srcRect;
@@ -19,14 +19,14 @@ public:
         srcRect (src),
         destRect (dst) 
     {};
-    template < typename returnT , typename argT >
+    
+    /*template < typename returnT , typename argT >
     returnT update ( const std::function <returnT ( argT )>& func, const argT& arg) {
         return func ( arg );
     };
+    */
 
-    template < typename returnT, typename argT >
-    returnT render ( const std::function <returnT ( argT )>& func, const argT& arg ) {
-        return func ( arg );
-    };
+    std::shared_ptr < std::function < void (void)> > update;
+    std::shared_ptr < std::function < void (const gameObject&)> > render;
 };
 

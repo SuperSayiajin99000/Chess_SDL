@@ -28,7 +28,7 @@ int main ( int argc, char* argv[] ) {
     );
     thisAssetsMap.generateAssetsMap ( );
 
-    constexpr int FPS = 60;
+    constexpr int FPS = 20;
     constexpr int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
