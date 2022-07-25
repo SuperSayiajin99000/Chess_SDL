@@ -2,12 +2,10 @@
 
 #include "game.hpp"
 #include "gameObject.hpp"
-#include <array>
 
 struct point{
 	int x, y;
 };
-
 
 enum PIECE_NAMES {
 
@@ -27,7 +25,6 @@ enum PIECE_NAMES {
 
 };
 
-
 class board {
 public:
 	constexpr static int ROWS = 8;
@@ -40,8 +37,8 @@ public:
 														    // (w.r.t. to tileSize)
 	
 	constexpr static point start = {					/// position of the board on the window
-			board::tileSize * 3, // x
-			board::tileSize * 2  // y
+		board::tileSize * 3, // x
+		board::tileSize * 2  // y
 	};
 public:
 	static std::unordered_map < int, std::shared_ptr <gameObject> > piecesMap;

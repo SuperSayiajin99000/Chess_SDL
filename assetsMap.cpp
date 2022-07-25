@@ -1,7 +1,6 @@
 #include "assetsMap.hpp"
 #include "board.hpp"
 #include "textureManager.h"
-#include "renderFunctions.hpp"
 
 //
 //enum TEXTURE_NAMES {
@@ -32,10 +31,11 @@ assetsMap::soundsMap assetsMap::sounds;
 
 assetsMap::assetsMap () {
 
+	background.reserve(board::ROWS);
 	for (int i = 0; i < board::ROWS; ++i) {
 
 		background.push_back( std::vector < std::shared_ptr < gameObject> > () );
-		
+		background.back().reserve(board::COLS);
 		for (int j = 0; j < board::COLS; ++j) {
 
 			background.back().push_back ( std::make_shared < gameObject >() );

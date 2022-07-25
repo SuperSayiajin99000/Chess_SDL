@@ -2,10 +2,6 @@
 
 #include "game.hpp"
 #include "gameObject.hpp"
-#include "SDL_memory.h"
-#include <unordered_map>
-#include <vector>
-
 
 enum TEXTURE_NAMES {
 	sq_dark_brown,

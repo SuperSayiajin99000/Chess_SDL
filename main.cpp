@@ -1,19 +1,6 @@
-#include <iostream>
-
-#include "SDL.h"
-#include "SDL_image.h"
 
 #include "game.hpp"
-#include "assetsMap.hpp"
-#include "SDL_memory.h"
-#include "textureManager.h"
 
-constexpr bool IS_ON = true;
-constexpr bool IS_OFF = false;
-constexpr char SEPERATOR_STR[] = "-------------------------------------\n";
-#define DEBUG_MODE IS_ON
-
-extern assetsMap thisAssetsMap;
 constexpr int WIN_W = 704, WIN_H = 640;
 
 int main ( int argc, char* argv[] ) {
@@ -26,13 +13,13 @@ int main ( int argc, char* argv[] ) {
         {WIN_W, WIN_H},
         false
     );
-    thisAssetsMap.generateAssetsMap ( );
 
-    constexpr int FPS = 20;
+    constexpr int FPS = 10;
     constexpr int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
     int frameTime;
+
     while ( thisGame.isRunning ( ) ) {
         frameStart = SDL_GetTicks();
         
@@ -46,7 +33,12 @@ int main ( int argc, char* argv[] ) {
             SDL_Delay(frameDelay - frameTime);
         }
     }
-    thisGame.clean ( );
+    
+    if (!std::string(SDL_GetError()).empty()) {
+        return EXIT_FAILURE;
+    }
+    
     cout << "Game ended" << endl;
+
     return EXIT_SUCCESS;
 }

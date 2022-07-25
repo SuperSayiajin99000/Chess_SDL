@@ -4,7 +4,6 @@
 
 #include "game.hpp"
 #include "gameObject.hpp"
-#include "sdl_image.h"
 
 class textureManager {
 public:
