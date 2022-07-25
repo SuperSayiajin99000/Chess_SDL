@@ -1,22 +1,53 @@
-#include <iostream>
 #include "game.hpp"
 #include "gameObject.hpp"
 #include "textureManager.h"
 #include "assetsMap.hpp"
 #include "board.hpp"
 
-constexpr char 
-SEPERATOR_STR [] = "-------------------------------------\n";
 
 constexpr bool IS_ON = true;
 constexpr bool IS_OFF = false;
+
 #define DEBUG_MODE IS_ON
+
+constexpr char SEPERATOR_STR [] = 
+"-------------------------------------\n";
 
 sdl::shared_ptr <SDL_Window> game::window = nullptr;
 sdl::shared_ptr <SDL_Renderer> game::renderer = nullptr;
 
 extern enum TEXTURE_NAMES textureNames;
 auto thisAssetsMap = assetsMap ();
+auto thisBoard = board();
+
+
+const bool game::init() {
+
+    using namespace std;
+
+    // SDL
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+
+#if DEBUG_MODE == IS_ON
+        cout << "SDL initialization ERROR ::" << ' ' << SDL_GetError() << endl;
+#endif // DEBUG_MODE
+        return false;
+    }
+
+    // SDL_image
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+
+#if DEBUG_MODE == IS_ON
+        cout << "Failed to initialize SDL_image for PNG, ERROR :: " << IMG_GetError() << endl;
+#endif // DEBUG_MODE
+        return false;
+    }
+
+    cout << "All Initializations successfull" << endl;
+    cout << SEPERATOR_STR;
+
+    return true;
+}
 
 game::game (
     const std::string& windowName,
@@ -78,6 +109,8 @@ HEIGHT(windowSize.second) {
 
     SDL_SetRenderDrawColor(renderer.get ( ), 255, 255, 255, 255);
 
+    thisAssetsMap.generateAssetsMap();
+    thisBoard.makeBoardRenderMatrix();
 };
 
 
@@ -87,47 +120,6 @@ game::~game () {
     #endif // DEBUG_MODE
     SDL_Quit ();
     return;
-}
-
-const bool game::init ( ) {
-
-    using namespace std;
-#if DEBUG_MODE == IS_ON
-    cout << "Starting initializations... " << endl;
-#endif // DEBUG_MODE
-
-    // SDL
-    if ( SDL_Init (SDL_INIT_EVERYTHING) < 0 ) {
-
-        #if DEBUG_MODE == IS_ON
-            cout << "SDL initialization ERROR ::" << ' ' << SDL_GetError ( ) << endl;
-        #endif // DEBUG_MODE
-        return false;
-    }
- #if DEBUG_MODE == IS_ON
-
-    else cout << "SDL initialized successfully" << endl;
-    
-#endif // DEBUG_MODE
-
-    // SDL_image
-    if ( !(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) ) {
-
-    #if DEBUG_MODE == IS_ON
-        cout << "Failed to initialize SDL_image for PNG, ERROR :: " << IMG_GetError ( ) << endl;
-    #endif // DEBUG_MODE
-        return false;
-    }
-
-    #if DEBUG_MODE == IS_ON
-    else cout << "SDL_image initialized successfully" << endl;
-
-    cout << "All Initializations successfull" << endl;
-    cout << SEPERATOR_STR;
-
-    #endif // DEBUG_MODE
-
-    return true;
 }
 
 void game::handleEvents ( ) {
@@ -154,12 +146,7 @@ void game::render ( ) {
     SDL_RenderCopy(renderer.get ( ),
         thisAssetsMap.textures.map[sq_light_gray].get( ),
         NULL, NULL);
-
-    //// chess board
-    //board::renderBackgound( );
-    //// pieces
-    //board::renderPieces( );
-    //
+    // game board
     board::renderTheMatrix();
 
     SDL_RenderPresent( game::renderer.get ( ) );

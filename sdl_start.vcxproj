@@ -124,7 +124,6 @@
     <ClInclude Include="board.hpp" />
     <ClInclude Include="game.hpp" />
     <ClInclude Include="gameObject.hpp" />
-    <ClInclude Include="renderFunctions.hpp" />
     <ClInclude Include="SDL_memory.h" />
     <ClInclude Include="textureManager.h" />
   </ItemGroup>

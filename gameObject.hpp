@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game.hpp"
-#include <functional>
 
 class gameObject {
 public:

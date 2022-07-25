@@ -3,14 +3,24 @@
 #ifndef GAME_HPP_INCLUDED
 #define GAME_HPP_INCLUDED
 
+// IO
 #include <iostream>
+
+// DS
 #include <string>
 #include <vector>
+#include <array>
 #include <unordered_map>
-#include <memory>
 
-#include <SDL.h>
-#include <SDL_image.h>
+// mem & func
+#include <memory>
+#include <functional>
+
+// SDL
+#include "SDL.h"
+#include "SDL_image.h"
+
+// CUSTOM
 #include "SDL_memory.h"
 
 class game {
