@@ -1,7 +1,21 @@
 #include "gameObject.hpp"
 
-gameObject::gameObject ( ) {
-    srcRect = {0, 0, 128, 128};
-    destRect.x = destRect.y = 0;
-    destRect.w = destRect.h = 32;
-};
+gameObject::gameObject() = default;
+
+gameObject::gameObject(
+    const sdl::shared_ptr <SDL_Texture>& tex,
+    const SDL_Rect& src,
+    const SDL_Rect& dst
+) :
+    texture(tex),
+    srcRect(src),
+    destRect(dst)
+{};
+
+gameObject::gameObject(gameObject&& obj) noexcept :
+    texture(obj.texture),
+    srcRect(obj.srcRect),
+    destRect(obj.destRect),
+    render (obj.render),
+    update (obj.update)
+{};

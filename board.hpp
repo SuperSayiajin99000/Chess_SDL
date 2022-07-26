@@ -42,8 +42,9 @@ public:
 	};
 public:
 	static std::unordered_map < int, std::shared_ptr <gameObject> > piecesMap;
-	static std::array < std::array <std::vector < std::shared_ptr <gameObject> >, 8 >, 8 > boardRenderMatrix;
+	static std::array < std::array <std::list < std::shared_ptr <gameObject> >, 8 >, 8 > objMatrix;
 public:
-	static void makeBoardRenderMatrix ( );
-	static void renderTheMatrix ( );
+	static void makeobjMatrix ( );
+	static void renderMatrix ( );
+	static void updateMatrix ( );
 };

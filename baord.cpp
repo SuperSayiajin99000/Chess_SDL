@@ -1,14 +1,14 @@
 #include "board.hpp"
-#include "assetsMap.hpp"
-#include "textureManager.h"
+#include "assetsManager.hpp"
+#include "textureHandler.hpp"
 
-const auto& pieces = assetsMap::pieces;
+const auto& pieces = assetsManager::pieces;
 
 std::unordered_map <int, std::shared_ptr <gameObject> > board::piecesMap;
 
-std::array < std::array <std::vector < std::shared_ptr <gameObject> >, 8 >, 8 > board::boardRenderMatrix;
+std::array < std::array <std::list < std::shared_ptr <gameObject> >, 8 >, 8 > board::objMatrix;
 
-void board::makeBoardRenderMatrix() {
+void board::makeobjMatrix() {
 
 	piecesMap = std::unordered_map <int, std::shared_ptr <gameObject> >({
 		{ b_rook1, pieces[0] },
@@ -63,29 +63,44 @@ void board::makeBoardRenderMatrix() {
 
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			boardRenderMatrix[i][j].push_back(assetsMap::background[i][j]);
+			objMatrix[i][j].push_back(assetsManager::background[i][j]);
 		}
 	}
 	for (int i = 0; i < ROWS; ++i) {
-		boardRenderMatrix[0][i].push_back(pieces[i]);
+		objMatrix[0][i].push_back(pieces[i]);
 	}
 	for (int i = 0; i < ROWS; ++i) {
-		boardRenderMatrix[1][i].push_back(pieces[i + 8]);
+		objMatrix[1][i].push_back(pieces[i + 8]);
 	}
 	for (int i = 0; i < ROWS; ++i) {
-		boardRenderMatrix[6][i].push_back(pieces[i + 16]);
+		objMatrix[6][i].push_back(pieces[i + 16]);
 	}
 	for (int i = 0; i < ROWS; ++i) {
-		boardRenderMatrix[7][i].push_back(pieces[i + 24]);
+		objMatrix[7][i].push_back(pieces[i + 24]);
 	}
 	
 }
 
-void board::renderTheMatrix() {
+void board::updateMatrix() {
 	for (int i = 0; i < ROWS; ++i) {
 		for (int j = 0; j < COLS; ++j) {
-			for (auto& thisObj : boardRenderMatrix[i][j]) {
-				// thisObj->render <void, gameObject> (drawGameObj, *thisObj);
+			for (auto it = objMatrix[i][j].begin(); it != objMatrix[i][j].end(); ++it) {
+				const auto& thisObj = *it;
+				if (!thisObj->isActive()) {
+					objMatrix[i][j].erase(it);
+					continue;
+				}
+				const auto update = *thisObj->update;
+				update(*thisObj);
+			}
+		}
+	}
+}
+
+void board::renderMatrix() {
+	for (int i = 0; i < ROWS; ++i) {
+		for (int j = 0; j < COLS; ++j) {
+			for (auto& thisObj : objMatrix[i][j]) {
 				const auto& render = *thisObj->render;
 				render(*thisObj);
 			}

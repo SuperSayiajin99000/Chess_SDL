@@ -11,6 +11,8 @@
 #include <vector>
 #include <array>
 #include <unordered_map>
+#include <unordered_set>
+#include <list>
 
 // mem & func
 #include <memory>
@@ -29,11 +31,11 @@ private: // all the stuff in the initializer list
     const int xPos, yPos;
     const int WIDTH, HEIGHT;
 private:  // basic UI stuff
-    SDL_Event windowEvent;
     bool m_isFullScreen = false;
 public:
     static sdl::shared_ptr <SDL_Window> window;
     static sdl::shared_ptr <SDL_Renderer> renderer;
+    static SDL_Event event;
 public:
     game (
         const std::string& windowName,

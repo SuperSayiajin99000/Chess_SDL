@@ -26,7 +26,12 @@ enum TEXTURE_NAMES {
 
 using sound = int; // ! CHANGE WHEN ADDING SOUNDS
 
-class assetsMap {
+class asset {
+public:
+
+};
+
+class assetsManager {
 public:
 	typedef struct texturesMap {
 		std::unordered_map < int, sdl::shared_ptr <SDL_Texture> > map;
@@ -36,15 +41,10 @@ public:
 	} soundsMap;
 	static texturesMap textures;
 	static soundsMap sounds;
-public:
-	static std::vector < std::vector < std::shared_ptr <gameObject> > > background;
-	static std::vector < std::shared_ptr <gameObject> > pieces;
 private:
 	void loadAssets ( );
-	void makeBackground ( );
-	inline void makePieces( );
 public:
-	assetsMap ( );
-	void generateAssetsMap ( );
-	~assetsMap ( );
+	assetsManager ( );
+	void generate ( );
+	~assetsManager ( );
 };

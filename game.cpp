@@ -1,7 +1,8 @@
 #include "game.hpp"
 #include "gameObject.hpp"
-#include "textureManager.h"
-#include "assetsMap.hpp"
+#include "textureHandler.hpp"
+#include "assetsManager.hpp"
+#include "objectsManager.hpp"
 #include "board.hpp"
 
 
@@ -15,11 +16,12 @@ constexpr char SEPERATOR_STR [] =
 
 sdl::shared_ptr <SDL_Window> game::window = nullptr;
 sdl::shared_ptr <SDL_Renderer> game::renderer = nullptr;
+SDL_Event game::event;
 
 extern enum TEXTURE_NAMES textureNames;
-auto thisAssetsMap = assetsMap ();
+auto thisAssetsManager = assetsManager ();
 auto thisBoard = board();
-
+auto thisObjectsManager = objectsManager();
 
 const bool game::init() {
 
@@ -109,8 +111,9 @@ HEIGHT(windowSize.second) {
 
     SDL_SetRenderDrawColor(renderer.get ( ), 255, 255, 255, 255);
 
-    thisAssetsMap.generateAssetsMap();
-    thisBoard.makeBoardRenderMatrix();
+    thisAssetsManager.generate();
+    thisObjectsManager.generate();
+    thisBoard.makeobjMatrix();
 };
 
 
@@ -123,31 +126,31 @@ game::~game () {
 }
 
 void game::handleEvents ( ) {
-    if ( SDL_PollEvent ( &windowEvent ) ) {
-        switch (windowEvent.type) {
-        case SDL_QUIT:
-            isPlaying = false;
-            return;
-        default:
-            return;
-        }
+    SDL_PollEvent(&event);
+
+    switch (event.type) {
+    case SDL_QUIT:
+        isPlaying = false;
+        return;
+    default:
+        return;
     }
 }
 
 void game::update ( ) {
-    
+    board::updateMatrix();
 }
 
 void game::render ( ) {  
-    static const auto& background = thisAssetsMap.background;
+    static const auto& background = thisAssetsManager.background;
     SDL_RenderClear( game::renderer.get ( ) );
     
     // empty space
     SDL_RenderCopy(renderer.get ( ),
-        thisAssetsMap.textures.map[sq_light_gray].get( ),
+        thisAssetsManager.textures.map[sq_light_gray].get( ),
         NULL, NULL);
     // game board
-    board::renderTheMatrix();
+    board::renderMatrix();
 
     SDL_RenderPresent( game::renderer.get ( ) );
 }

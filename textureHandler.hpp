@@ -5,7 +5,7 @@
 #include "game.hpp"
 #include "gameObject.hpp"
 
-class textureManager {
+class textureHandler {
 public:
     static inline sdl::unique_ptr <SDL_Texture> loadTexture (const char* path) {
         return

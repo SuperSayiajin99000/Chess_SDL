@@ -100,6 +100,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>D:\dev\SDL2_image\include;D:\dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\dev\SDL2_image\lib\x64;D:\dev\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -108,19 +109,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="assetsMap.cpp" />
+    <ClCompile Include="assetsManager.cpp" />
     <ClCompile Include="baord.cpp" />
+    <ClCompile Include="ECS.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameObject.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="objectsManger.cpp" />
+    <ClCompile Include="renderFunctions.cpp" />
+    <ClCompile Include="updateFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.hpp" />
+    <ClInclude Include="ECS.hpp" />
     <ClInclude Include="game.hpp" />
-    <ClInclude Include="assetsMap.hpp" />
+    <ClInclude Include="assetsManager.hpp" />
     <ClInclude Include="gameObject.hpp" />
+    <ClInclude Include="objectsManager.hpp" />
     <ClInclude Include="SDL_memory.h" />
-    <ClInclude Include="textureManager.h" />
+    <ClInclude Include="textureHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\chess pieces 5.ai" />
