@@ -1,10 +1,12 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "game.hpp"
 #include "gameObject.hpp"
 #include "textureHandler.hpp"
 #include "assetsManager.hpp"
-#include "objectsManager.hpp"
+#include "ECS.hpp"
 #include "board.hpp"
-
 
 constexpr bool IS_ON = true;
 constexpr bool IS_OFF = false;
@@ -17,11 +19,6 @@ constexpr char SEPERATOR_STR [] =
 sdl::shared_ptr <SDL_Window> game::window = nullptr;
 sdl::shared_ptr <SDL_Renderer> game::renderer = nullptr;
 SDL_Event game::event;
-
-extern enum TEXTURE_NAMES textureNames;
-auto thisAssetsManager = assetsManager ();
-auto thisBoard = board();
-auto thisObjectsManager = objectsManager();
 
 const bool game::init() {
 
@@ -99,7 +96,7 @@ HEIGHT(windowSize.second) {
 
     this->renderer = sdl::make_shared (SDL_CreateRenderer ( this->window.get (), -1, 0 ));
 
-    if ( renderer == nullptr )
+    if ( this->renderer == nullptr )
     {
 
         std::cout << "SDL could not create renderer, ERROR :: " << SDL_GetError ( ) << std::endl;
@@ -109,11 +106,10 @@ HEIGHT(windowSize.second) {
         return;
     }
 
-    SDL_SetRenderDrawColor(renderer.get ( ), 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(this->renderer.get ( ), 255, 255, 255, 255);
 
-    thisAssetsManager.generate();
-    thisObjectsManager.generate();
-    thisBoard.makeobjMatrix();
+    assetsManager::init();
+    board::init();
 };
 
 
@@ -138,20 +134,19 @@ void game::handleEvents ( ) {
 }
 
 void game::update ( ) {
-    board::updateMatrix();
+    componentsMap::updateComponets();
 }
 
-void game::render ( ) {  
-    static const auto& background = thisAssetsManager.background;
+void game::render ( ) {
     SDL_RenderClear( game::renderer.get ( ) );
     
     // empty space
     SDL_RenderCopy(renderer.get ( ),
-        thisAssetsManager.textures.map[sq_light_gray].get( ),
+        assetsManager::getTexture(sq_light_gray).get(),
         NULL, NULL);
     // game board
-    board::renderMatrix();
-
+    componentsMap::renderComponets();
+	
     SDL_RenderPresent( game::renderer.get ( ) );
 }
 

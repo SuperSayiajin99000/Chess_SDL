@@ -1,6 +1,9 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+#include "textureHandler.hpp"
 #include "assetsManager.hpp"
 #include "board.hpp"
-#include "textureHandler.hpp"
 
 //
 //enum TEXTURE_NAMES {
@@ -24,31 +27,17 @@
 //	w_rook,
 //};
 
-
 assetsManager::texturesMap assetsManager::textures;
 assetsManager::soundsMap assetsManager::sounds;
 
-assetsManager::assetsManager () {
-
-	background.reserve(board::ROWS);
-	for (int i = 0; i < board::ROWS; ++i) {
-
-		background.push_back( std::vector < std::shared_ptr < gameObject> > () );
-		background.back().reserve(board::COLS);
-		for (int j = 0; j < board::COLS; ++j) {
-
-			background.back().push_back ( std::make_shared < gameObject >() );
-		
-		}
-	}
-}
-
-void assetsManager::loadAssets ( ) {
+void assetsManager::init ( ) {
 	using namespace std;
 	cout << "Loading Assets... " << endl;
 
 	textureHandler txmgr;
 
+	textures.map.reserve(board::total_pieces);
+	
 	textures.map [sq_dark_brown] =
 		txmgr.loadTexture
 		( "./assets/PNGs/With Shadow/128h/square brown dark_png_shadow_128px.png" );
@@ -126,22 +115,8 @@ void assetsManager::loadAssets ( ) {
 		std::cout << success << " textures successfully loaded" << std::endl;
 	}
 }
-// render functions
-extern std::shared_ptr < std::function < void ( const gameObject& ) > > ptr_to_basicObjRender;
-extern std::shared_ptr < std::function < void ( const gameObject& ) > > ptr_to_pieceRender;
-// update fucntions 
-extern std::shared_ptr < std::function < void ( const gameObject& ) > > ptr_to_basicUpdate;
-extern std::shared_ptr < std::function < void ( const gameObject& ) > > ptr_to_pieceUpdate;
 
-
-
-void assetsManager::generate ( ) {
-	loadAssets ( );
-	board::makeobjMatrix ( );
-}
-
-assetsManager::~assetsManager ( ) {
-	textures.map.clear ( );
-	sounds.map.clear ( );
-	background.clear ( );
+// get texture
+sdl::shared_ptr <SDL_Texture> assetsManager::getTexture (int name) {
+	return textures.map[name];
 }

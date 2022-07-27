@@ -2,6 +2,7 @@
 
 #include "game.hpp"
 #include "gameObject.hpp"
+#include "gameEntities.hpp"
 
 struct point{
 	int x, y;
@@ -30,21 +31,25 @@ public:
 	constexpr static int ROWS = 8;
 	constexpr static int COLS = 8;
 
-	constexpr static int tileSize = 64;						// Side of the square tile
+	constexpr static int tileSize = 64;						// Side of the Tile tile
 	
 	constexpr static int piece_shift_origin = tileSize / 8; // amount to center each piece
 	constexpr static int piece_size = 3 * tileSize / 4;		// reduced size of each piece 
 														    // (w.r.t. to tileSize)
 	
+	
+	constexpr static int total_pieces = 16;					// total number of pieces on the board
+	constexpr static int total_tiles = ROWS*COLS;			// total number of tiles on the board
+	
 	constexpr static point start = {					/// position of the board on the window
-		board::tileSize * 3, // x
+		board::tileSize * 0, // x
 		board::tileSize * 2  // y
 	};
 public:
-	static std::unordered_map < int, std::shared_ptr <gameObject> > piecesMap;
-	static std::array < std::array <std::list < std::shared_ptr <gameObject> >, 8 >, 8 > objMatrix;
-public:
-	static void makeobjMatrix ( );
-	static void renderMatrix ( );
-	static void updateMatrix ( );
+	static std::unordered_map < int, std::shared_ptr <Piece> > piecesMap;
+	static std::array < std::array < std::shared_ptr <Tile>, COLS >, ROWS > background;
+	static void init();
+private:
+	static void makeBackground();
+	static void makeMap();
 };

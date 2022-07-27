@@ -1,7 +1,6 @@
 #pragma once
 
 #include "game.hpp"
-#include "gameObject.hpp"
 
 enum TEXTURE_NAMES {
 	sq_dark_brown,
@@ -41,10 +40,7 @@ public:
 	} soundsMap;
 	static texturesMap textures;
 	static soundsMap sounds;
-private:
-	void loadAssets ( );
 public:
-	assetsManager ( );
-	void generate ( );
-	~assetsManager ( );
+	static void init ( );
+	static sdl::shared_ptr<SDL_Texture> getTexture ( int name );
 };

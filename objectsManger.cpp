@@ -3,8 +3,8 @@
 #include "objectsManager.hpp"
 #include "board.hpp"
 
-std::vector <std::vector < std::shared_ptr <gameObject> > > objectsManager::background;
-std::vector <std::shared_ptr <gameObject>> objectsManager::pieces;
+std::vector <std::vector < std::shared_ptr <GameObject> > > objectsManager::background;
+std::vector <std::shared_ptr <GameObject>> objectsManager::pieces;
 auto& textures = assetsManager::textures;
 
 
@@ -16,7 +16,7 @@ void objectsManager::makeBackground() {
 
 	background.reserve(board::ROWS);
 	for (int i = 0; i < board::ROWS; ++i) {
-		std::shared_ptr <gameObject> obj;
+		std::shared_ptr <GameObject> obj;
 		background.back().reserve(board::COLS);
 		for (int j = 0; j < board::COLS; ++j) {
 			sdl::shared_ptr <SDL_Texture> tempTex;
@@ -26,8 +26,8 @@ void objectsManager::makeBackground() {
 			else
 				tempTex = textures.map[sq_light_brown];
 
-			obj = std::make_shared <gameObject>(
-				gameObject(
+			obj = std::make_shared <GameObject>(
+				GameObject(
 					std::move(tempTex),
 					{ 0, 0, tileSize * 2, tileSize * 2 },
 					{ xpos, ypos, tileSize, tileSize }
@@ -50,8 +50,8 @@ void objectsManager::makeBackground() {
 inline void objectsManager::addPiece(enum TEXTURE_NAMES textureName, int xPos, int yPos) {
 	sdl::shared_ptr <SDL_Texture> tempTex = textures.map[textureName];
 	pieces.push_back(
-		std::make_shared <gameObject>(
-			gameObject(
+		std::make_shared <GameObject>(
+			GameObject(
 				std::move(tempTex),
 				{ 0, 0, board::tileSize * 3, board::tileSize * 3 },
 				{

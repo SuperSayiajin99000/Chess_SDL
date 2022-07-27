@@ -1,0 +1,906 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Solution_Path">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="SolutionPath" type="xs:string" minOccurs="0" />
+                <xs:element name="SolutionVersion" type="xs:string" minOccurs="0" />
+                <xs:element name="PlogVersion" type="xs:unsignedInt" minOccurs="0" />
+                <xs:element name="ModificationDate" msdata:DateTimeMode="Utc" type="xs:dateTime" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="PVS-Studio_Analysis_Log">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FavIcon" type="xs:boolean" minOccurs="0" msdata:Ordinal="0" />
+                <xs:element name="Level" type="xs:unsignedInt" minOccurs="0" msdata:Ordinal="1" />
+                <xs:element name="DefaultOrder" type="xs:int" minOccurs="0" msdata:Ordinal="2" />
+                <xs:element name="ErrorCode" type="xs:string" msdata:Ordinal="3" />
+                <xs:element name="Message" type="xs:string" msdata:Ordinal="4" />
+                <xs:element name="Project" type="xs:string" minOccurs="0" msdata:Ordinal="5" />
+                <xs:element name="ShortFile" type="xs:string" minOccurs="0" msdata:Ordinal="6" />
+                <xs:element name="Line" type="xs:int" msdata:Ordinal="7" />
+                <xs:element name="FalseAlarm" type="xs:boolean" minOccurs="0" msdata:Ordinal="8" />
+                <xs:element name="File" type="xs:string" msdata:Ordinal="9" />
+                <xs:element name="CodePrev" type="xs:unsignedInt" minOccurs="0" msdata:Ordinal="10" />
+                <xs:element name="CodeCurrent" type="xs:unsignedInt" minOccurs="0" msdata:Ordinal="11" />
+                <xs:element name="CodeNext" type="xs:unsignedInt" minOccurs="0" msdata:Ordinal="12" />
+                <xs:element name="TrialMessage" type="xs:boolean" minOccurs="0" msdata:Ordinal="13" />
+                <xs:element name="Analyzer" type="xs:int" minOccurs="0" msdata:Ordinal="14" />
+                <xs:element name="LineExtension" type="xs:string" minOccurs="0" msdata:Ordinal="15" />
+                <xs:element name="Retired" type="xs:boolean" default="false" minOccurs="0" msdata:Ordinal="16" />
+                <xs:element name="AnalyzedSourceFiles" type="xs:string" minOccurs="0" msdata:Ordinal="17" />
+                <xs:element name="CWECode" type="xs:string" minOccurs="0" msdata:Ordinal="18" />
+                <xs:element name="SAST" type="xs:string" minOccurs="0" msdata:Ordinal="19" />
+                <xs:element name="Positions" msdata:DataType="ProgramVerificationSystems.PVSStudio.CommonTypes.SourceFilePositions, PVS-Studio-vs2022, Version=7.19.61166.3606, Culture=neutral, PublicKeyToken=null" type="xs:anyType" minOccurs="0" msdata:Ordinal="20" />
+                <xs:element name="MISRA" type="xs:string" minOccurs="0" msdata:Ordinal="21" />
+              </xs:sequence>
+              <xs:attribute name="ErrorCodeNumeric" msdata:ReadOnly="true" msdata:Expression="IIF(LEN(ErrorCode) &lt; 2 OR (SUBSTRING(ErrorCode, 1, 1) &lt;&gt; 'V'), 0, CONVERT(SUBSTRING(ErrorCode, 2, LEN(ErrorCode) - 1), 'System.UInt32'))" type="xs:unsignedInt" use="prohibited" />
+              <xs:attribute name="CWECodeNumeric" msdata:ReadOnly="true" msdata:Expression="ISNULL(IIF(LEN(CWECode) &lt; 4 + 1 OR (SUBSTRING(CWECode, 1, 4) &lt;&gt; 'CWE-'), 4294967295, CONVERT(SUBSTRING(CWECode, 4 + 1, LEN(CWECode) - 4), 'System.UInt32')), 4294967295)" type="xs:unsignedInt" use="prohibited" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//PVS-Studio_Analysis_Log" />
+        <xs:field xpath="Line" />
+        <xs:field xpath="Message" />
+        <xs:field xpath="File" />
+        <xs:field xpath="ErrorCode" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Solution_Path>
+    <SolutionPath>D:\dev\c++\sdl\sdl_start\sdl_chess.sln</SolutionPath>
+    <SolutionVersion>17.0</SolutionVersion>
+    <PlogVersion>7</PlogVersion>
+    <ModificationDate>2022-07-27T05:33:42.6162967Z</ModificationDate>
+  </Solution_Path>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>1</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 136 to 128 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_audio.h</ShortFile>
+    <Line>232</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_audio.h</File>
+    <CodePrev>1550719580</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>581568224</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="232">D:\dev\SDL2\include\SDL_audio.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>2</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 96 to 80 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_surface.h</ShortFile>
+    <Line>71</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_surface.h</File>
+    <CodePrev>775358679</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>3702035390</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="71">D:\dev\SDL2\include\SDL_surface.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>3</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 48 to 44 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_haptic.h</ShortFile>
+    <Line>559</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_haptic.h</File>
+    <CodePrev>461769438</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>16827</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="559">D:\dev\SDL2\include\SDL_haptic.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>4</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 68 to 64 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_haptic.h</ShortFile>
+    <Line>612</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_haptic.h</File>
+    <CodePrev>923534730</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>16827</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="612">D:\dev\SDL2\include\SDL_haptic.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>5</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 44 to 40 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_haptic.h</ShortFile>
+    <Line>649</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_haptic.h</File>
+    <CodePrev>1907908783</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>16827</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="649">D:\dev\SDL2\include\SDL_haptic.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>6</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 80 to 72 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_hidapi.h</ShortFile>
+    <Line>84</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_hidapi.h</File>
+    <CodePrev>923079533</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>212140980</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="84">D:\dev\SDL2\include\SDL_hidapi.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>7</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 56 to 48 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_messagebox.h</ShortFile>
+    <Line>95</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_messagebox.h</File>
+    <CodePrev>378582</CodePrev>
+    <CodeCurrent>123</CodeCurrent>
+    <CodeNext>2604093013</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="95">D:\dev\SDL2\include\SDL_messagebox.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>8</DefaultOrder>
+    <ErrorCode>V802</ErrorCode>
+    <Message>On 64-bit platform, structure size can be reduced from 24 to 20 bytes by rearranging the fields according to their sizes in decreasing order.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>game.hpp</ShortFile>
+    <Line>32</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\game.hpp</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>35933</CodeCurrent>
+    <CodeNext>380715055</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="32">D:\dev\c++\sdl\sdl_start\game.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>9</DefaultOrder>
+    <ErrorCode>V832</ErrorCode>
+    <Message>It's better to use '= default;' syntax instead of empty constructor body.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>ECS.hpp</ShortFile>
+    <Line>20</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\ECS.hpp</File>
+    <CodePrev>5816</CodePrev>
+    <CodeCurrent>52287</CodeCurrent>
+    <CodeNext>39521</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="20">D:\dev\c++\sdl\sdl_start\ECS.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>10</DefaultOrder>
+    <ErrorCode>V690</ErrorCode>
+    <Message>The 'GameObject' class implements a copy constructor, but lacks the copy assignment operator. It is dangerous to use such a class.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameObject.hpp</ShortFile>
+    <Line>8</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameObject.hpp</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>6236823</CodeCurrent>
+    <CodeNext>5816</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="8">D:\dev\c++\sdl\sdl_start\gameObject.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>11</DefaultOrder>
+    <ErrorCode>V690</ErrorCode>
+    <Message>The 'GameObject' class implements a move constructor, but lacks the move assignment operator. It is dangerous to use such a class.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameObject.hpp</ShortFile>
+    <Line>8</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameObject.hpp</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>6236823</CodeCurrent>
+    <CodeNext>5816</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="8">D:\dev\c++\sdl\sdl_start\gameObject.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>12</DefaultOrder>
+    <ErrorCode>V690</ErrorCode>
+    <Message>The 'Picture' class implements a move constructor, but lacks the move assignment operator. It is dangerous to use such a class.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntities.hpp</ShortFile>
+    <Line>14</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntities.hpp</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>2061356679</CodeCurrent>
+    <CodeNext>11496</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="14">D:\dev\c++\sdl\sdl_start\gameEntities.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>13</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_main.h</ShortFile>
+    <Line>42</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_main.h</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>16549739</CodeCurrent>
+    <CodeNext>4123792017</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="42">D:\dev\SDL2\include\SDL_main.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>14</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_main.h</ShortFile>
+    <Line>195</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_main.h</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>103329</CodeCurrent>
+    <CodeNext>0</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="195">D:\dev\SDL2\include\SDL_main.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>15</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_stdinc.h</ShortFile>
+    <Line>83</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_stdinc.h</File>
+    <CodePrev>405382</CodePrev>
+    <CodeCurrent>7112555</CodeCurrent>
+    <CodeNext>56570115</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="83">D:\dev\SDL2\include\SDL_stdinc.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>16</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_config.h</ShortFile>
+    <Line>239</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_config.h</File>
+    <CodePrev>10791435</CodePrev>
+    <CodeCurrent>258977</CodeCurrent>
+    <CodeNext>43168717</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="239">D:\dev\SDL2\include\SDL_config.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>17</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>begin_code.h</ShortFile>
+    <Line>54</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\begin_code.h</File>
+    <CodePrev>127217</CodePrev>
+    <CodeCurrent>828232763</CodeCurrent>
+    <CodeNext>199596</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="54">D:\dev\SDL2\include\begin_code.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>18</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>begin_code.h</ShortFile>
+    <Line>77</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\begin_code.h</File>
+    <CodePrev>64840</CodePrev>
+    <CodeCurrent>928547760</CodeCurrent>
+    <CodeNext>195598</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="77">D:\dev\SDL2\include\begin_code.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>19</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_AUDIO_BITSIZE' is a dangerous expression. The parameter 'x' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_audio.h</ShortFile>
+    <Line>77</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_audio.h</File>
+    <CodePrev>2771988871</CodePrev>
+    <CodeCurrent>1688950487</CodeCurrent>
+    <CodeNext>156675226</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="77">D:\dev\SDL2\include\SDL_audio.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>20</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_AUDIO_ISFLOAT' is a dangerous expression. The parameter 'x' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_audio.h</ShortFile>
+    <Line>78</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_audio.h</File>
+    <CodePrev>1688950487</CodePrev>
+    <CodeCurrent>156675226</CodeCurrent>
+    <CodeNext>1648379029</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="78">D:\dev\SDL2\include\SDL_audio.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>21</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_AUDIO_ISBIGENDIAN' is a dangerous expression. The parameter 'x' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_audio.h</ShortFile>
+    <Line>79</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_audio.h</File>
+    <CodePrev>156675226</CodePrev>
+    <CodeCurrent>1648379029</CodeCurrent>
+    <CodeNext>39219282</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="79">D:\dev\SDL2\include\SDL_audio.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>22</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_AUDIO_ISSIGNED' is a dangerous expression. The parameter 'x' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_audio.h</ShortFile>
+    <Line>80</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_audio.h</File>
+    <CodePrev>1648379029</CodePrev>
+    <CodeCurrent>39219282</CodeCurrent>
+    <CodeNext>608846046</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="80">D:\dev\SDL2\include\SDL_audio.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>23</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_cpuinfo.h</ShortFile>
+    <Line>82</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_cpuinfo.h</File>
+    <CodePrev>2244726</CodePrev>
+    <CodeCurrent>2897000522</CodeCurrent>
+    <CodeNext>651692000</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="82">D:\dev\SDL2\include\SDL_cpuinfo.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>24</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_SCANCODE_TO_KEYCODE' is a dangerous expression. The parameter 'X' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_keycode.h</ShortFile>
+    <Line>48</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_keycode.h</File>
+    <CodePrev>401974789</CodePrev>
+    <CodeCurrent>1050493770</CodeCurrent>
+    <CodeNext>0</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="48">D:\dev\SDL2\include\SDL_keycode.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>25</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_SHAPEMODEALPHA' is a dangerous expression. The parameter 'mode' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_shape.h</ShortFile>
+    <Line>96</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_shape.h</File>
+    <CodePrev>0</CodePrev>
+    <CodeCurrent>964402952</CodeCurrent>
+    <CodeNext>0</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="96">D:\dev\SDL2\include\SDL_shape.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>1</Level>
+    <DefaultOrder>26</DefaultOrder>
+    <ErrorCode>V1040</ErrorCode>
+    <Message>Possible typo in the spelling of a pre-defined macro name. The '__WINRT__' macro is similar to '__WINNT__'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_system.h</ShortFile>
+    <Line>443</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2\include\SDL_system.h</File>
+    <CodePrev>1118923209</CodePrev>
+    <CodeCurrent>103329</CodeCurrent>
+    <CodeNext>0</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="443">D:\dev\SDL2\include\SDL_system.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>27</DefaultOrder>
+    <ErrorCode>V1003</ErrorCode>
+    <Message>The macro 'SDL_IMAGE_VERSION_ATLEAST' is a dangerous expression. The parameters 'X', 'Y', 'Z' must be surrounded by parentheses.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>SDL_image.h</ShortFile>
+    <Line>76</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\SDL2_image\include\SDL_image.h</File>
+    <CodePrev>123</CodePrev>
+    <CodeCurrent>3823000578</CodeCurrent>
+    <CodeNext>3700718195</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles>D:\dev\c++\sdl\sdl_start\baord.cpp*D:\dev\c++\sdl\sdl_start\ECS.cpp*D:\dev\c++\sdl\sdl_start\game.cpp*D:\dev\c++\sdl\sdl_start\assetsManager.cpp*D:\dev\c++\sdl\sdl_start\main.cpp*D:\dev\c++\sdl\sdl_start\gameEntites.cpp*D:\dev\c++\sdl\sdl_start\gameObject.cpp*D:\dev\c++\sdl\sdl_start\textureHandler.cpp</AnalyzedSourceFiles>
+    <Positions>
+      <Position lines="76">D:\dev\SDL2_image\include\SDL_image.h</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>28</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the second argument 'const pair &lt; int, int &gt;&amp; windowPos' with 'pair &lt; int, int &gt; windowPos'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>game.cpp</ShortFile>
+    <Line>53</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\game.cpp</File>
+    <CodePrev>612532632</CodePrev>
+    <CodeCurrent>615188719</CodeCurrent>
+    <CodeNext>1230377284</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="53">D:\dev\c++\sdl\sdl_start\game.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>29</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the third argument 'const pair &lt; int, int &gt;&amp; windowSize' with 'pair &lt; int, int &gt; windowSize'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>game.cpp</ShortFile>
+    <Line>54</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\game.cpp</File>
+    <CodePrev>615188719</CodePrev>
+    <CodeCurrent>1230377284</CodeCurrent>
+    <CodeNext>583408</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="54">D:\dev\c++\sdl\sdl_start\game.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>30</DefaultOrder>
+    <ErrorCode>V820</ErrorCode>
+    <Message>The 'entity' variable is not used after copying. Copying can be replaced with move/swap for optimization.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>8</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>2474526617</CodePrev>
+    <CodeCurrent>1178129</CodeCurrent>
+    <CodeNext>3180535657</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="8">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>31</DefaultOrder>
+    <ErrorCode>V820</ErrorCode>
+    <Message>The 'gameObject' variable is not used after copying. Copying can be replaced with move/swap for optimization.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>38</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>1005216450</CodePrev>
+    <CodeCurrent>697799383</CodeCurrent>
+    <CodeNext>125</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="38">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>32</DefaultOrder>
+    <ErrorCode>V820</ErrorCode>
+    <Message>The 'texture' variable is not used after copying. Copying can be replaced with move/swap for optimization.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>50</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>1682375</CodePrev>
+    <CodeCurrent>87801489</CodeCurrent>
+    <CodeNext>698269873</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="50">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>33</DefaultOrder>
+    <ErrorCode>V764</ErrorCode>
+    <Message>Possible incorrect order of arguments passed to 'GameObject' function: 'destRect' and 'srcRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>67</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>10630</CodePrev>
+    <CodeCurrent>17280</CodeCurrent>
+    <CodeNext>5894</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <CWECode>CWE-683</CWECode>
+    <SAST>CERT-EXP37-C</SAST>
+    <Positions>
+      <Position lines="67">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+      <Position lines="21">D:\dev\c++\sdl\sdl_start\gameObject.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>2</Level>
+    <DefaultOrder>34</DefaultOrder>
+    <ErrorCode>V764</ErrorCode>
+    <Message>Possible incorrect order of arguments passed to 'GameObject' function: 'destRect' and 'srcRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>84</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>10630</CodePrev>
+    <CodeCurrent>17280</CodeCurrent>
+    <CodeNext>5894</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>4</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <CWECode>CWE-683</CWECode>
+    <SAST>CERT-EXP37-C</SAST>
+    <Positions>
+      <Position lines="84">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+      <Position lines="21">D:\dev\c++\sdl\sdl_start\gameObject.hpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>35</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the first argument 'const SDL_Rect&amp; srcRect' with 'SDL_Rect srcRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>75</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>800015452</CodePrev>
+    <CodeCurrent>978173340</CodeCurrent>
+    <CodeNext>2966814658</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="75">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>36</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the second argument 'const SDL_Rect&amp; destRect' with 'SDL_Rect destRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameEntites.cpp</ShortFile>
+    <Line>75</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameEntites.cpp</File>
+    <CodePrev>800015452</CodePrev>
+    <CodeCurrent>978173340</CodeCurrent>
+    <CodeNext>2966814658</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="75">D:\dev\c++\sdl\sdl_start\gameEntites.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>37</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the second argument 'const SDL_Rect&amp; srcRect' with 'SDL_Rect srcRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameObject.cpp</ShortFile>
+    <Line>10</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameObject.cpp</File>
+    <CodePrev>1293867664</CodePrev>
+    <CodeCurrent>145392672</CodeCurrent>
+    <CodeNext>145394646</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="10">D:\dev\c++\sdl\sdl_start\gameObject.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+  <PVS-Studio_Analysis_Log>
+    <FavIcon>false</FavIcon>
+    <Level>3</Level>
+    <DefaultOrder>38</DefaultOrder>
+    <ErrorCode>V835</ErrorCode>
+    <Message>Passing cheap-to-copy argument by reference may lead to decreased performance. To avoid this, replace the third argument 'const SDL_Rect&amp; destRect' with 'SDL_Rect destRect'.</Message>
+    <Project>sdl_chess</Project>
+    <ShortFile>gameObject.cpp</ShortFile>
+    <Line>11</Line>
+    <FalseAlarm>false</FalseAlarm>
+    <File>D:\dev\c++\sdl\sdl_start\gameObject.cpp</File>
+    <CodePrev>145392672</CodePrev>
+    <CodeCurrent>145394646</CodeCurrent>
+    <CodeNext>104</CodeNext>
+    <TrialMessage>false</TrialMessage>
+    <Analyzer>5</Analyzer>
+    <Retired>false</Retired>
+    <AnalyzedSourceFiles />
+    <Positions>
+      <Position lines="11">D:\dev\c++\sdl\sdl_start\gameObject.cpp</Position>
+    </Positions>
+  </PVS-Studio_Analysis_Log>
+</NewDataSet>

@@ -1,45 +1,25 @@
 #pragma once
 
 #include "game.hpp"
+#include "ECS.hpp"
 #include "assetsManager.hpp"
 
-class gameObject {
+struct GameObject {
 public:
-    //sdl::shared_ptr <SDL_Texture> texture;
-    std::unordered_map <int, asset> assetsMap;
-    SDL_Rect srcRect;
-    SDL_Rect destRect;
+	sdl::shared_ptr <SDL_Texture> texture;
+	SDL_Rect srcRect;
+	SDL_Rect destRect;
 public:
-    /*std::shared_ptr < std::function < void (const gameObject&)> > render;
-    std::shared_ptr < std::function < void (const gameObject&)> > update;*/
-private:
-    bool active = true;
-public:
-    gameObject ( );
-    
-    // copy constructor
-    gameObject (
-        const sdl::shared_ptr <SDL_Texture>& tex,
-        const SDL_Rect& src,
-        const SDL_Rect& dst
-    );
-    
-    // object move constructor
-    gameObject(
-        gameObject&& obj
-    ) noexcept;
-
-    bool isActive() const { return active; }
-    void deactivate() { active = false; }
-
-    /*template < typename returnT , typename argT >
-    returnT update ( const std::function <returnT ( argT )>& func, const argT& arg) {
-        return func ( arg );
-    };
-    */
-
-    void addRender(int typeName) {
-        
-    }
+	// defualt
+	GameObject() {
+		srcRect = { 0, 0, 0, 0 };
+		destRect = { 0, 0, 0, 0 };
+	};
+	GameObject(
+		const sdl::shared_ptr <SDL_Texture>& tex,
+		const SDL_Rect& srcRect,
+		const SDL_Rect& destRect
+	);
+	GameObject(GameObject&& obj) noexcept;
+	GameObject(const GameObject& obj);
 };
-

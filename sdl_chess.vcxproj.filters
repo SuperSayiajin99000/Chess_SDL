@@ -30,16 +30,13 @@
     <ClCompile Include="baord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="updateFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="objectsManger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ECS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameEntites.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textureHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +59,10 @@
     <ClInclude Include="board.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="objectsManager.hpp">
+    <ClInclude Include="ECS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ECS.hpp">
+    <ClInclude Include="gameEntities.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

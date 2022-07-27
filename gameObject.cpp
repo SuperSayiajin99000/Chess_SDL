@@ -1,21 +1,29 @@
+// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
 #include "gameObject.hpp"
 
-gameObject::gameObject() = default;
 
-gameObject::gameObject(
+GameObject::GameObject(
     const sdl::shared_ptr <SDL_Texture>& tex,
-    const SDL_Rect& src,
-    const SDL_Rect& dst
+    const SDL_Rect& srcRect,
+    const SDL_Rect& destRect
 ) :
     texture(tex),
-    srcRect(src),
-    destRect(dst)
+    srcRect(srcRect),
+    destRect(destRect)
 {};
 
-gameObject::gameObject(gameObject&& obj) noexcept :
+// move constructor
+GameObject::GameObject(GameObject&& obj) noexcept :
     texture(obj.texture),
     srcRect(obj.srcRect),
-    destRect(obj.destRect),
-    render (obj.render),
-    update (obj.update)
+    destRect(obj.destRect)
+{};
+
+// copy constructor
+GameObject::GameObject(const GameObject& obj) :
+	texture(obj.texture),
+	srcRect(obj.srcRect),
+	destRect(obj.destRect)
 {};
