@@ -109,24 +109,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="assetsManager.cpp" />
+    <ClCompile Include="AssetsManager.cpp" />
     <ClCompile Include="baord.cpp" />
     <ClCompile Include="ECS.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameEntites.cpp" />
-    <ClCompile Include="gameObject.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="textureHandler.cpp" />
+    <ClCompile Include="TextureHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="board.hpp" />
     <ClInclude Include="ECS.hpp" />
     <ClInclude Include="game.hpp" />
-    <ClInclude Include="assetsManager.hpp" />
+    <ClInclude Include="AssetsManager.hpp" />
     <ClInclude Include="gameEntities.hpp" />
-    <ClInclude Include="gameObject.hpp" />
+    <ClInclude Include="Sprite.hpp" />
     <ClInclude Include="SDL_memory.h" />
-    <ClInclude Include="textureHandler.hpp" />
+    <ClInclude Include="TextureHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\chess pieces 5.ai" />

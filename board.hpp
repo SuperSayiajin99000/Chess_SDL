@@ -1,7 +1,7 @@
 #pragma once
 
 #include "game.hpp"
-#include "gameObject.hpp"
+#include "Sprite.hpp"
 #include "gameEntities.hpp"
 
 struct point{
@@ -41,8 +41,8 @@ public:
 	constexpr static int total_pieces = 16;					// total number of pieces on the board
 	constexpr static int total_tiles = ROWS*COLS;			// total number of tiles on the board
 	
-	constexpr static point start = {					/// position of the board on the window
-		board::tileSize * 0, // x
+	constexpr static point start = {				/// position of the board on the window
+		board::tileSize * 3, // x
 		board::tileSize * 2  // y
 	};
 public:

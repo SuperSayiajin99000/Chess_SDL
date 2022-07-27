@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game.hpp"
+#include "Sprite.hpp"
 
 enum TEXTURE_NAMES {
 	sq_dark_brown,
@@ -25,22 +26,17 @@ enum TEXTURE_NAMES {
 
 using sound = int; // ! CHANGE WHEN ADDING SOUNDS
 
-class asset {
+class AssetsManager {
 public:
-
-};
-
-class assetsManager {
-public:
-	typedef struct texturesMap {
-		std::unordered_map < int, sdl::shared_ptr <SDL_Texture> > map;
-	} texturesMap;
+	typedef struct SpritesMap {
+		std::unordered_map < int, sdl::shared_ptr <Sprite> > map;
+	} SpritesMap;
 	typedef struct soundsMap {
 		std::unordered_map < int, sdl::shared_ptr <sound> > map;
 	} soundsMap;
-	static texturesMap textures;
+	static SpritesMap Sprites;
 	static soundsMap sounds;
 public:
 	static void init ( );
-	static sdl::shared_ptr<SDL_Texture> getTexture ( int name );
+	static std::shared_ptr<Sprite> getSprite ( int name );
 };

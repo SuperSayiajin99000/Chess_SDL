@@ -1,45 +1,21 @@
 #pragma once
 
-#ifndef GAME_ENTITIES_HPP_INCLUDED
-#define GAME_ENTITIES_HPP_INCLUDED
-
 #include "game.hpp"
-#include "gameObject.hpp"
+#include "Sprite.hpp"
 #include "ECS.hpp"
 
-
-class Picture;
 class Tile;
-
-class Picture : public Component {
-private:
-	std::shared_ptr <GameObject> m_gameObject;
-public:
-	Picture(std::shared_ptr <Entity> entity);
-	// copy construtor
-	Picture(const Picture& pic) = delete;
-	// move constructor
-	Picture(Picture&& pic) noexcept;
-
-	// set gameobj
-	void setGameObject(std::shared_ptr <GameObject> gameObject);
-	
-	// get gameobj
-	std::shared_ptr <GameObject> getGameObject() const;
-	
-	~Picture();
-	template <typename T>
-	inline T getEntity() {
-		return *std::static_pointer_cast <T, Entity> (this->entity_);
-	}
-	
-	virtual void render() override;
-	virtual void update() override {};
-};
 
 class Tile : public Entity {
 public:
-	Tile(int x, int y, int w, int h, sdl::shared_ptr <SDL_Texture> texture);
+	// tile consturctor
+	void init (
+		int x, 
+		int y, 
+		int w, 
+		int h, 
+		std::shared_ptr <Sprite> uSprite
+	);
 };
 
 class Piece : public Entity {
@@ -50,11 +26,20 @@ public:
 	};
 private:
 	int color;
+	int name;
 public:
-	Piece (SDL_Rect&& srcRect, SDL_Rect&& destRect, sdl::shared_ptr <SDL_Texture> texture , int color);
-	// Piece constructor by rect copy
-	Piece (const SDL_Rect& srcRect, const SDL_Rect& destRect, sdl::shared_ptr <SDL_Texture> texture, int color);
+	void init(
+		std::shared_ptr <Sprite> uSprite,
+		int x,
+		int y,
+		int w,
+		int h,
+		int name,
+		int color
+	);
+
+	// get sprite
+	std::shared_ptr <Sprite> getSprite() {
+		return std::make_shared <Sprite>(this->getComponent <Sprite>());
+	}
 };
-
-
-#endif // GAME_ENTITIES_HPP_INCLUDED

@@ -3,13 +3,11 @@
 #define TEXTUREMANAGER_H_INCLUDED
 
 #include "game.hpp"
-#include "gameObject.hpp"
+#include "Sprite.hpp"
 
-class textureHandler {
+class TextureHandler {
 public:
-    static sdl::unique_ptr <SDL_Texture> loadTexture(const char* path);
-
-    static void draw(const GameObject& obj);
+    static std::unique_ptr <Sprite> loadTexture(const char* path);
 };
 
 #endif // TEXTUREMANAGER_H_INCLUDED

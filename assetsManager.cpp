@@ -1,8 +1,8 @@
 // This is a personal academic project. Dear PVS-Studio, please check it.
 
 // PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
-#include "textureHandler.hpp"
-#include "assetsManager.hpp"
+#include "TextureHandler.hpp"
+#include "AssetsManager.hpp"
 #include "board.hpp"
 
 //
@@ -27,96 +27,99 @@
 //	w_rook,
 //};
 
-assetsManager::texturesMap assetsManager::textures;
-assetsManager::soundsMap assetsManager::sounds;
+AssetsManager::SpritesMap AssetsManager::Sprites;
+AssetsManager::soundsMap AssetsManager::sounds;
 
-void assetsManager::init ( ) {
+void AssetsManager::init ( ) {
 	using namespace std;
 	cout << "Loading Assets... " << endl;
 
-	textureHandler txmgr;
-
-	textures.map.reserve(board::total_pieces);
+	Sprites.map.reserve(board::total_pieces);
 	
-	textures.map [sq_dark_brown] =
-		txmgr.loadTexture
+	// This map contians unitialized Sprite Components
+	// It is used to initialize the sprites in the game
+	// Unitialized sprites are not drawn in the game by the componentsMap
+	// but can be drawn if called explicitly
+	
+	Sprites.map [sq_dark_brown] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/square brown dark_png_shadow_128px.png" );
 
-	textures.map [sq_light_brown] =
-		txmgr.loadTexture
+	Sprites.map [sq_light_brown] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/square brown light_png_shadow_128px.png" );
 
-	textures.map [sq_dark_gray] =
-		txmgr.loadTexture
+	Sprites.map [sq_dark_gray] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/square gray dark _png_shadow_128px.png" );
 
-	textures.map [sq_light_gray] =
-		txmgr.loadTexture
+	Sprites.map [sq_light_gray] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/square gray light _png_shadow_128px.png" );
 
-	textures.map [b_bishop] =
-		txmgr.loadTexture
+	Sprites.map [b_bishop] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_bishop_png_shadow_128px.png" );
 	
-	textures.map [b_king] =
-		txmgr.loadTexture
+	Sprites.map [b_king] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_king_png_shadow_128px.png" );
 	
-	textures.map [b_knight] =
-		txmgr.loadTexture
+	Sprites.map [b_knight] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_knight_png_shadow_128px.png" );
 	
-	textures.map [b_pawn] =
-		txmgr.loadTexture
+	Sprites.map [b_pawn] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_pawn_png_shadow_128px.png" );
 	
-	textures.map [b_queen] =
-		txmgr.loadTexture
+	Sprites.map [b_queen] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_queen_png_shadow_128px.png" );
 	
-	textures.map [b_rook] =
-		txmgr.loadTexture
+	Sprites.map [b_rook] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/b_rook_png_shadow_128px.png" );
-	textures.map [w_bishop] =
-		txmgr.loadTexture
+	Sprites.map [w_bishop] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_bishop_png_shadow_128px.png" );
 	
-	textures.map [w_king] =
-		txmgr.loadTexture
+	Sprites.map [w_king] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_king_png_shadow_128px.png" );
 	
-	textures.map [w_knight] =
-		txmgr.loadTexture
+	Sprites.map [w_knight] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_knight_png_shadow_128px.png" );
 	
-	textures.map [w_pawn] =
-		txmgr.loadTexture
+	Sprites.map [w_pawn] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_pawn_png_shadow_128px.png" );
 	
-	textures.map [w_queen] =
-		txmgr.loadTexture
+	Sprites.map [w_queen] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_queen_png_shadow_128px.png" );
 	
-	textures.map [w_rook] =
-		txmgr.loadTexture
+	Sprites.map [w_rook] =
+		TextureHandler::loadTexture
 		( "./assets/PNGs/With Shadow/128h/w_rook_png_shadow_128px.png" );
 
 	// debug
 	{
 		int fail = 0, success = 0;
-		for (const auto& [name, tex] : textures.map) {
+		for (const auto& [name, tex] : Sprites.map) {
 			if (tex.get() == nullptr) {
 				fail++;
 			}
 			else success++;
 		}
-		std::cout << textures.map.size() << " textures initiallized to load" << std::endl;
-		std::cout << fail << " textures failed to load " << std::endl;
-		std::cout << success << " textures successfully loaded" << std::endl;
+		std::cout << Sprites.map.size() << " Sprites initiallized to load" << std::endl;
+		std::cout << fail << " Sprites failed to load " << std::endl;
+		std::cout << success << " Sprites successfully loaded" << std::endl;
 	}
 }
 
 // get texture
-sdl::shared_ptr <SDL_Texture> assetsManager::getTexture (int name) {
-	return textures.map[name];
+std::shared_ptr <Sprite> AssetsManager::getSprite (int name) {
+	return Sprites.map[name];
 }

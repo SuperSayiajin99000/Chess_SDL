@@ -21,10 +21,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="assetsManager.cpp">
+    <ClCompile Include="AssetsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gameObject.cpp">
+    <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="baord.cpp">
@@ -36,7 +36,7 @@
     <ClCompile Include="gameEntites.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="textureHandler.cpp">
+    <ClCompile Include="TextureHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,16 +44,16 @@
     <ClInclude Include="SDL_memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="textureHandler.hpp">
+    <ClInclude Include="TextureHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="assetsManager.hpp">
+    <ClInclude Include="AssetsManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gameObject.hpp">
+    <ClInclude Include="Sprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="board.hpp">
